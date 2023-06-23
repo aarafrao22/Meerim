@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarafrao.budgetmanagermeerim.database.DatabaseHelper;
+import com.aarafrao.budgetmanagermeerim.database_expense.ExpDatabaseHelper;
 import com.aarafrao.budgetmanagermeerim.databinding.ActivityAddBinding;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -100,22 +101,30 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void saveData() {
-        DatabaseHelper databaseHelper = DatabaseHelper.getDB(getApplicationContext());
-        databaseHelper.notificationDAO().addAppointment(
-                new IncomeModel(
-                        binding.edName.getText().toString(),
-                        binding.edDate.getText().toString(),
-                        Integer.valueOf(binding.edAmount.getText().toString())
-                )
-        );
+        String cont = getIntent().getStringExtra("ctx");
+        if (cont.equals("income")) {
+            DatabaseHelper databaseHelper = DatabaseHelper.getDB(getApplicationContext());
+            databaseHelper.notificationDAO().addAppointment(new IncomeModel(binding.edName.getText().toString(), binding.edDate.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
 
-        List<IncomeModel> models = databaseHelper.notificationDAO().getAllAppointments();
-        for (int i = 0; i < models.size(); i++) {
-            Log.d(TAG, "saveData: " + models.get(i));
+            List<IncomeModel> models = databaseHelper.notificationDAO().getAllAppointments();
+            for (int i = 0; i < models.size(); i++) {
+                Log.d(TAG, "saveData: " + models.get(i));
+            }
+
+            startActivity(new Intent(ActivityAdd.this, IncomeActivity.class));
+        } else {
+            ExpDatabaseHelper databaseHelper = ExpDatabaseHelper.getExpense(getApplicationContext());
+            databaseHelper.expenseDAO().addAppointment(new IncomeModel(binding.edName.getText().toString(), binding.edDate.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
+
+            List<IncomeModel> models = databaseHelper.expenseDAO().getAllAppointments();
+            for (int i = 0; i < models.size(); i++) {
+                Log.d(TAG, "saveData: " + models.get(i));
+            }
+            startActivity(new Intent(ActivityAdd.this, ExpenseActivity.class));
         }
-
-        startActivity(new Intent(getApplicationContext(), IncomeModel.class));
         finish();
+
+
     }
 
     private String getRandomString(final int sizeOfRandomString) {

@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class IncomeActivity extends AppCompatActivity {
     ArrayList<IncomeModel> models = new ArrayList();
     DatabaseHelper databaseHelper;
-    ActivityIncomeBinding binding;
     IncomeAdapter adapter;
+    ActivityIncomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class IncomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnAdd.setOnClickListener(v -> {
-            startActivity(new Intent(this, ActivityAdd.class));
+            startActivity(new Intent(this, ActivityAdd.class).putExtra("ctx","income"));
         });
 
         databaseHelper = DatabaseHelper.getDB(getApplicationContext());
