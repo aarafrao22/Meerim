@@ -1,9 +1,12 @@
 package com.aarafrao.budgetmanagermeerim;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +18,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aarafrao.budgetmanagermeerim.database.DatabaseHelper;
 import com.aarafrao.budgetmanagermeerim.databinding.ActivityAddBinding;
+import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -23,6 +28,7 @@ import com.google.android.material.slider.Slider;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -50,7 +56,6 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
         setContentView(binding.getRoot());
         paths = new ArrayList<>();
         paths.add("Default");
-
 
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -81,37 +86,8 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
 
                     if (!binding.edDate.getText().toString().equals("")) {
 
-                        //SaveInDatabase On Firebase and ROOM
-
-                        Toast.makeText(this, "Password Saved", Toast.LENGTH_SHORT).show();
-//                        String uname = binding.edEmail.getText().toString();
-//                        String[] u_name = uname.split("@");
-
-//                            String hashed = null;
-//                            try {
-//                                hashed = AESEncryption.encrypt(binding.edPassword.getText().toString());
-////                                hashed = "encrypt";
-//                            } catch (Exception e) {
-//                                throw new RuntimeException(e);
-//                            }
-//                            long unixTime = System.currentTimeMillis() / 1000L;
-//
-//                            PasswordModel p = new PasswordModel(
-//                                    binding.edEmail.getText().toString(),
-//                                    binding.edName.getText().toString(),
-//                                    hashed, String.valueOf(unixTime)
-//
-//                            );
-
-//                            mDatabase.child("passwords")
-//                                    .child(Constants.ID)
-//                                    .child(paths.get(selectedIndex))
-//                                    .child(binding.edName.getText().toString())
-//                                    .setValue(p);
-
-                        Intent intent = new Intent(ActivityAdd.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
+                        saveData();
+                        Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
 
 
                     } else binding.edDate.setError("Enter ");
@@ -121,6 +97,25 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
+    }
+
+    private void saveData() {
+        DatabaseHelper databaseHelper = DatabaseHelper.getDB(getApplicationContext());
+        databaseHelper.notificationDAO().addAppointment(
+                new IncomeModel(
+                        binding.edName.getText().toString(),
+                        binding.edDate.getText().toString(),
+                        Integer.valueOf(binding.edAmount.getText().toString())
+                )
+        );
+
+        List<IncomeModel> models = databaseHelper.notificationDAO().getAllAppointments();
+        for (int i = 0; i < models.size(); i++) {
+            Log.d(TAG, "saveData: " + models.get(i));
+        }
+
+        startActivity(new Intent(getApplicationContext(), IncomeModel.class));
+        finish();
     }
 
     private String getRandomString(final int sizeOfRandomString) {
