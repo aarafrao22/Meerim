@@ -1,16 +1,14 @@
 package com.aarafrao.budgetmanagermeerim;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity {
+import android.os.Bundle;
+
+public class ExpenseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-
+        setContentView(R.layout.activity_expense);
     }
 }

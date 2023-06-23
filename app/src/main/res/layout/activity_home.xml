@@ -1,9 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tool_bar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
     tools:context=".HomeActivity">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        app:cardBackgroundColor="#f0f0f0"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Budget Manager"
+            android:textColor="@color/green_dark"
+            android:textSize="28dp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/money_dollar_circle_line" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintWidth_percent="0.92">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="97dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="@color/theme_green"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.46">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_gravity="start|center"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/money_dollar_circle_line" />
+
+            <TextView
+                android:id="@+id/text_cash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="12dp"
+                android:text="Cash Transfer"
+                android:textSize="12dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="97dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/theme_green"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.46">
+
+            <ImageView
+                android:id="@+id/imageView_9"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="start|center"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/money_dollar_circle_line" />
+
+            <TextView
+                android:id="@+id/text_ride"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="30dp"
+                android:text="Income"
+                android:textSize="14dp" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintWidth_percent="0.92">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="97dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="@color/theme_green"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.46">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="46dp"
+                android:layout_height="61dp"
+                android:layout_gravity="start|center"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/money_dollar_circle_line" />
+
+            <TextView
+                android:id="@+id/text_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="12dp"
+                android:text="Khareed Lao"
+                android:textSize="12dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="97dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/theme_green"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.46">
+
+            <ImageView
+                android:id="@+id/imageView_10"
+                android:layout_width="55dp"
+                android:layout_height="54dp"
+                android:layout_gravity="start|center"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/money_dollar_circle_line" />
+
+            <TextView
+                android:id="@+id/text_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="30dp"
+                android:text="Delivery"
+                android:textSize="14dp" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintWidth_percent="0.92">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="97dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="@color/theme_green"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.46">
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="46dp"
+                android:layout_height="53dp"
+                android:layout_gravity="start|center"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/money_dollar_circle_line" />
+
+            <TextView
+                android:id="@+id/text_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="12dp"
+                android:text="Mazay"
+                android:textSize="12dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="97dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/theme_green"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.46">
+
+            <ImageView
+                android:id="@+id/imageView_13"
+                android:layout_width="49dp"
+                android:layout_height="53dp"
+                android:layout_gravity="start|center"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/money_dollar_circle_line" />
+
+            <TextView
+                android:id="@+id/text_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginRight="30dp"
+                android:text="Shops"
+                android:textSize="14dp" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.aarafrao.budgetmanagermeerim;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,7 +21,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtDontHave;
@@ -29,137 +29,106 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth firebaseAuth;
     private TextView forgotPassword;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         initViews();
-        clickListeners();
-        edEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        setupListeners();
+        setupTextChangeListeners();
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInputs();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        edPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInputs();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkEmailAndPassword();
-            }
-        });
-
+        btnSignIn.setOnClickListener(v -> checkEmailAndPassword());
+        forgotPassword.setOnClickListener(v -> handleForgotPassword());
     }
 
-    private void clickListeners() {
+    private void setupListeners() {
         txtDontHave.setOnClickListener(this);
     }
 
-    private void sendToMainActivity(String s) {
-        startActivity(new Intent(this, HomeActivity.class).putExtra("name", s));
-        finish();
+    private void setupTextChangeListeners() {
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkInputs();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+
+        edEmail.addTextChangedListener(textWatcher);
+        edPassword.addTextChangedListener(textWatcher);
+    }
+
+    private void handleForgotPassword() {
+        // Implement your logic for forgot password here
     }
 
     private void checkEmailAndPassword() {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
-        if (edEmail.getText().toString().matches(emailPattern)) {
-            if (edPassword.length() >= 8) {
-
-                disable();
-
-                firebaseAuth.signInWithEmailAndPassword(edEmail.getText().toString(), edPassword.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                FirebaseUser user = task.getResult().getUser();
-                                if (task.isSuccessful()) {
-                                    sendToMainActivity(user.getDisplayName());
-                                } else {
-                                    disable();
-                                    Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_LONG);
-
-                                }
-                            }
-                        });
-            } else {
-                Toast.makeText(this, "Incorrect Email or Password", Toast.LENGTH_SHORT);
-            }
+        if (edEmail.getText().toString().matches(emailPattern) && edPassword.length() >= 8) {
+            disableButton();
+            firebaseAuth.signInWithEmailAndPassword(edEmail.getText().toString(), edPassword.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = task.getResult().getUser();
+                            sendToMainActivity(user.getDisplayName());
+                        } else {
+                            enableButton();
+                            Toast.makeText(LoginActivity.this, "Error signing in", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void enable() {
+    private void enableButton() {
         btnSignIn.setEnabled(true);
         btnSignIn.setTextColor(Color.rgb(255, 255, 255));
     }
 
-    private void disable() {
+    private void disableButton() {
         btnSignIn.setEnabled(false);
         btnSignIn.setTextColor(Color.argb(50, 255, 255, 255));
     }
 
     private void checkInputs() {
-        if (!TextUtils.isEmpty(edEmail.getText())) {
-            if (!TextUtils.isEmpty(edPassword.getText())) {
-                enable();
-            } else {
-                disable();
-            }
+        boolean isEmailEmpty = TextUtils.isEmpty(edEmail.getText());
+        boolean isPasswordEmpty = TextUtils.isEmpty(edPassword.getText());
+        if (!isEmailEmpty && !isPasswordEmpty) {
+            enableButton();
         } else {
-            disable();
+            disableButton();
         }
     }
 
     private void initViews() {
         txtDontHave = findViewById(R.id.sign_in_dont_have);
-
         edEmail = findViewById(R.id.sign_in_email);
         edPassword = findViewById(R.id.sign_in_password);
         btnSignIn = findViewById(R.id.btn_sign_in);
         forgotPassword = findViewById(R.id.sign_in_forgot);
-        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-//            case R.id.sign_in_dont_have:
-//                startActivity(new Intent(this, LoginActivity.class));
-//                break;
+        if (view.getId() == R.id.sign_in_dont_have) {
+            startActivity(new Intent(this, SignupActivity.class));
         }
+    }
+
+    private void sendToMainActivity(String name) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("name", name);
+        startActivity(intent);
+        finish();
     }
 }

@@ -185,7 +185,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         edName = findViewById(R.id.sign_up_f_name);
         btnSignUp = findViewById(R.id.btn_sign_up);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
 //        firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
