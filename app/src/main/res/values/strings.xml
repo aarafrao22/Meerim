@@ -35,4 +35,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="financial_goals">Financial Goals</string>
     <string name="reports">Reports</string>
+    <string name="articles">Articles</string>
 </resources>
