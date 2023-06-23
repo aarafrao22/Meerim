@@ -1,14 +1,26 @@
 package com.aarafrao.budgetmanagermeerim;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.aarafrao.budgetmanagermeerim.databinding.ActivityIncomeBinding;
+
 public class IncomeActivity extends AppCompatActivity {
+
+    ActivityIncomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+        binding = ActivityIncomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.btnAdd.setOnClickListener(v -> {
+            startActivity(new Intent(this, ActivityAdd.class));
+        });
+
+
     }
 }

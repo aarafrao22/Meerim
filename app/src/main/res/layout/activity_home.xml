@@ -8,7 +8,6 @@
     android:background="@color/white"
     tools:context=".HomeActivity">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -20,13 +19,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Budget Manager"
+            android:text="Budget\nManager"
             android:textColor="@color/green_dark"
             android:textSize="28dp"
             android:textStyle="bold" />
@@ -66,10 +64,11 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_exp"
             android:layout_width="0dp"
             android:layout_height="97dp"
             android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="@color/theme_green"
+            app:cardBackgroundColor="#FF5252"
             app:cardCornerRadius="14dp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -91,11 +90,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:layout_marginRight="12dp"
-                android:text="Cash Transfer"
-                android:textSize="12dp" />
+                android:text="Expense"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_income"
             android:layout_width="0dp"
             android:layout_height="97dp"
             android:layout_marginStart="8dp"
@@ -122,7 +124,8 @@
                 android:layout_gravity="end|center"
                 android:layout_marginRight="30dp"
                 android:text="Income"
-                android:textSize="14dp" />
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 
 
@@ -142,6 +145,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_goal"
             android:layout_width="0dp"
             android:layout_height="97dp"
             android:layout_marginEnd="8dp"
@@ -167,11 +171,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:layout_marginRight="12dp"
-                android:text="Khareed Lao"
-                android:textSize="12dp" />
+                android:text="@string/financial_goals"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_bud"
             android:layout_width="0dp"
             android:layout_height="97dp"
             android:layout_marginStart="8dp"
@@ -196,9 +202,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
-                android:layout_marginRight="30dp"
-                android:text="Delivery"
-                android:textSize="14dp" />
+                android:layout_marginEnd="30dp"
+                android:text="Budget"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 
 
@@ -216,38 +223,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintWidth_percent="0.92">
 
-
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="97dp"
-            android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="@color/theme_green"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.46">
-
-            <ImageView
-                android:id="@+id/imageView16"
-                android:layout_width="46dp"
-                android:layout_height="53dp"
-                android:layout_gravity="start|center"
-                android:layout_margin="8dp"
-                app:srcCompat="@drawable/money_dollar_circle_line" />
-
-            <TextView
-                android:id="@+id/text_food"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginRight="12dp"
-                android:text="Mazay"
-                android:textSize="12dp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+            android:id="@+id/card_report"
             android:layout_width="0dp"
             android:layout_height="97dp"
             android:layout_marginStart="8dp"
@@ -273,8 +250,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:layout_marginRight="30dp"
-                android:text="Shops"
-                android:textSize="14dp" />
+                android:text="@string/reports"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 
 

@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BudgetManagerMeerim"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ActivityAdd"
+            android:exported="false" />
         <activity
             android:name=".IncomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExpenseActivity"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"
@@ -23,10 +28,10 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
