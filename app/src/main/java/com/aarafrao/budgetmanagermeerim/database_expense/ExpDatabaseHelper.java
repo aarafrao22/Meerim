@@ -1,12 +1,11 @@
 package com.aarafrao.budgetmanagermeerim.database_expense;
 
 import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.aarafrao.budgetmanagermeerim.database.ModelDAO;
+import com.aarafrao.budgetmanagermeerim.database.BudgetDAO;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 
 @Database(entities = IncomeModel.class, exportSchema = false, version = 1)
@@ -24,5 +23,5 @@ public abstract class ExpDatabaseHelper extends RoomDatabase {
         return instance;
     }
 
-    public abstract ModelDAO expenseDAO();
+    public abstract BudgetDAO expenseDAO();
 }

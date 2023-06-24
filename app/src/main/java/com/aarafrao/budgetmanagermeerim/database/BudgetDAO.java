@@ -11,7 +11,7 @@ import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 import java.util.List;
 
 @Dao
-public interface ModelDAO {
+public interface BudgetDAO {
     @Query("select * FROM notifications")
     List<IncomeModel> getAllAppointments();
 
