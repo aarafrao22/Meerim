@@ -6,17 +6,17 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.aarafrao.budgetmanagermeerim.adapters.IncomeAdapter;
+import com.aarafrao.budgetmanagermeerim.adapters.ExpenseAdapter;
 import com.aarafrao.budgetmanagermeerim.database_expense.ExpDatabaseHelper;
 import com.aarafrao.budgetmanagermeerim.databinding.ActivityExpenseBinding;
-import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
+import com.aarafrao.budgetmanagermeerim.models.ExpenseModel;
 
 import java.util.ArrayList;
 
 public class ExpenseActivity extends AppCompatActivity {
-    ArrayList<IncomeModel> models = new ArrayList<>();
+    ArrayList<ExpenseModel> models = new ArrayList<>();
     ExpDatabaseHelper databaseHelper;
-    IncomeAdapter adapter;
+    ExpenseAdapter adapter;
     ActivityExpenseBinding binding;
 
     @Override
@@ -31,9 +31,9 @@ public class ExpenseActivity extends AppCompatActivity {
         });
 
         databaseHelper = ExpDatabaseHelper.getExpense(getApplicationContext());
-        models = new ArrayList<>(databaseHelper.expenseDAO().getAllAppointments());
+        models = new ArrayList<>(databaseHelper.expenseDAO().getAllExpense());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new IncomeAdapter(models, this);
+        adapter = new ExpenseAdapter(models, this);
         binding.recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 

@@ -7,7 +7,6 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.aarafrao.budgetmanagermeerim.database.BudgetDAO;
 import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
 
 @Database(entities = BudgetModel.class, exportSchema = false, version = 1)

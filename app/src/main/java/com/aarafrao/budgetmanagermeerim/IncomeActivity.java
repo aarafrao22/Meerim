@@ -30,7 +30,7 @@ public class IncomeActivity extends AppCompatActivity {
         });
 
         databaseHelper = DatabaseHelper.getDB(getApplicationContext());
-        models = new ArrayList<>(databaseHelper.notificationDAO().getAllAppointments());
+        models = new ArrayList<>(databaseHelper.notificationDAO().getAllIncome());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new IncomeAdapter(models, this);
         binding.recyclerView.setAdapter(adapter);

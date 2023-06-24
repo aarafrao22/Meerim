@@ -6,19 +6,20 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 
 import java.util.List;
 
 @Dao
-public interface BudgetDAO {
+public interface IncomeDAO {
     @Query("select * FROM notifications")
-    List<IncomeModel> getAllAppointments();
+    List<IncomeModel> getAllIncome();
 
     @Insert
-    void addAppointment(IncomeModel model);
+    void addIncome(IncomeModel model);
 
     @Delete
-    void deleteNotification(IncomeModel model);
+    void deleteIncome(IncomeModel model);
 
 }

@@ -19,8 +19,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aarafrao.budgetmanagermeerim.database.DatabaseHelper;
+import com.aarafrao.budgetmanagermeerim.database_budget.BudgetDBHelper;
 import com.aarafrao.budgetmanagermeerim.database_expense.ExpDatabaseHelper;
 import com.aarafrao.budgetmanagermeerim.databinding.ActivityAddBinding;
+import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
+import com.aarafrao.budgetmanagermeerim.models.ExpenseModel;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
@@ -30,7 +33,6 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -45,38 +47,48 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
     private Slider seekbar;
     private MaterialButton btnUsePassword;
     private String ALLOWED_CHARACTERS = "{}[]%^;':,.?/0123456789qwertyuiopasdfghjklzxcvbnm";
-
+    String cont = "";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddBinding.inflate(getLayoutInflater());
-//        binding2 = BottomSheetLayoutBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
         paths = new ArrayList<>();
-        paths.add("Default");
+        cont = getIntent().getStringExtra("ctx");
 
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
+        switch (cont) {
+            case "budget":
+                binding.edDateLayout.setVisibility(View.GONE);
+                binding.imgDatePicker.setVisibility(View.GONE);
+                binding.edNameLayout.setHint("Budget Name");
+                binding.spinnerDropdown.setVisibility(View.GONE);
+                break;
+
+            case "income":
+//                binding.edDateLayout.setVisibility(View.GONE);
+//                binding.imgDatePicker.setVisibility(View.GONE);
+                break;
+
+        }
+
+        BudgetDBHelper databaseHelper = BudgetDBHelper.getBudget(getApplicationContext());
+
+        List<BudgetModel> models = databaseHelper.budgetDAO().getAllBudgets();
+        for (int i = 0; i < models.size(); i++) {
+            Log.d(TAG, "budgetList: " + models.get(i));
+            paths.add(models.get(i).getName());
+        }
+
+        paths.add("Default");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(ActivityAdd.this, android.R.layout.simple_spinner_item, paths);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerDropdown.setAdapter(adapter);
         binding.spinnerDropdown.setOnItemSelectedListener(this);
 
-        String v1 = getRandomString((int) 10);
-//        txtMain.setText(v1);
-
-//        btnUsePassword.setOnClickListener(v -> binding.edPassword.setText(generatedPassword));
-
-//        seekbar.addOnChangeListener((slider, value, fromUser) -> {
-//            txtMain.setText(getRandomString((int) value));
-//        });
-
-//        checkDIgits.setChecked(true);
-//        checkAlpha.setChecked(true);
-//        checkSymbol.setChecked(true);
         binding.imgClose.setOnClickListener(v -> finish());
 
         binding.btnSave.setOnClickListener(v2 -> {
@@ -85,13 +97,9 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
 
                 if (!binding.edName.getText().toString().equals("")) {
 
-                    if (!binding.edDate.getText().toString().equals("")) {
+                    saveData();
+                    Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
 
-                        saveData();
-                        Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
-
-
-                    } else binding.edDate.setError("Enter ");
                 } else binding.edLoginLayout.setError("Enter MAIL");
             } else {
                 binding.edNameLayout.setError("Enter Name");
@@ -101,39 +109,38 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
     }
 
     private void saveData() {
-        String cont = getIntent().getStringExtra("ctx");
         if (cont.equals("income")) {
             DatabaseHelper databaseHelper = DatabaseHelper.getDB(getApplicationContext());
-            databaseHelper.notificationDAO().addAppointment(new IncomeModel(binding.edName.getText().toString(), binding.edDate.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
+            databaseHelper.notificationDAO().addIncome(new IncomeModel(binding.edName.getText().toString(), binding.edDate.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
 
-            List<IncomeModel> models = databaseHelper.notificationDAO().getAllAppointments();
+            List<IncomeModel> models = databaseHelper.notificationDAO().getAllIncome();
             for (int i = 0; i < models.size(); i++) {
                 Log.d(TAG, "saveData: " + models.get(i));
             }
 
             startActivity(new Intent(ActivityAdd.this, IncomeActivity.class));
-        } else {
+        } else if (cont.equals("expense")) {
             ExpDatabaseHelper databaseHelper = ExpDatabaseHelper.getExpense(getApplicationContext());
-            databaseHelper.expenseDAO().addAppointment(new IncomeModel(binding.edName.getText().toString(), binding.edDate.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
+            databaseHelper.expenseDAO().addExpense(new ExpenseModel(binding.edName.getText().toString(), binding.edDate.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString()), paths.get(selectedIndex).toString()));
 
-            List<IncomeModel> models = databaseHelper.expenseDAO().getAllAppointments();
+            List<ExpenseModel> models = databaseHelper.expenseDAO().getAllExpense();
             for (int i = 0; i < models.size(); i++) {
                 Log.d(TAG, "saveData: " + models.get(i));
             }
             startActivity(new Intent(ActivityAdd.this, ExpenseActivity.class));
+        } else if (cont.equals("budget")) {
+            BudgetDBHelper databaseHelper = BudgetDBHelper.getBudget(getApplicationContext());
+            databaseHelper.budgetDAO().addBudget(new BudgetModel(binding.edName.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
+
+            List<BudgetModel> models = databaseHelper.budgetDAO().getAllBudgets();
+            for (int i = 0; i < models.size(); i++) {
+                Log.d(TAG, "saveData: " + models.get(i));
+            }
+            startActivity(new Intent(ActivityAdd.this, BudgetActivity.class));
         }
         finish();
 
 
-    }
-
-    private String getRandomString(final int sizeOfRandomString) {
-        final Random random = new Random();
-        final StringBuilder sb = new StringBuilder(sizeOfRandomString);
-        for (int i = 0; i < sizeOfRandomString; ++i)
-            sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
-        generatedPassword = sb.toString();
-        return sb.toString();
     }
 
     @Override

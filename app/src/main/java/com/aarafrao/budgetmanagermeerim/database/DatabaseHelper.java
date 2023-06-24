@@ -24,5 +24,5 @@ public abstract class DatabaseHelper extends RoomDatabase {
         return instance;
     }
 
-    public abstract BudgetDAO notificationDAO();
+    public abstract IncomeDAO notificationDAO();
 }

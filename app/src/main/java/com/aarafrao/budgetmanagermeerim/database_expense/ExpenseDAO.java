@@ -5,19 +5,19 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
+import com.aarafrao.budgetmanagermeerim.models.ExpenseModel;
 
 import java.util.List;
 
 @Dao
 public interface ExpenseDAO {
     @Query("select * FROM expense")
-    List<IncomeModel> getAllExpense();
+    List<ExpenseModel> getAllExpense();
 
     @Insert
-    void addExpense(IncomeModel model);
+    void addExpense(ExpenseModel model);
 
     @Delete
-    void deleteExpense(IncomeModel model);
+    void deleteExpense(ExpenseModel model);
 
 }
