@@ -21,8 +21,10 @@ import com.aarafrao.budgetmanagermeerim.database.DatabaseHelper;
 import com.aarafrao.budgetmanagermeerim.database_budget.BudgetDBHelper;
 import com.aarafrao.budgetmanagermeerim.database_expense.ExpDatabaseHelper;
 import com.aarafrao.budgetmanagermeerim.databinding.ActivityAddBinding;
+import com.aarafrao.budgetmanagermeerim.goals_db.GoalsDBHelper;
 import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
 import com.aarafrao.budgetmanagermeerim.models.ExpenseModel;
+import com.aarafrao.budgetmanagermeerim.models.GoalsModel;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 import com.google.firebase.database.DatabaseReference;
 
@@ -52,15 +54,11 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
 
         switch (cont) {
             case "budget":
+            case "goals":
                 binding.edDateLayout.setVisibility(View.GONE);
                 binding.imgDatePicker.setVisibility(View.GONE);
                 binding.edNameLayout.setHint("Budget Name");
                 binding.spinnerDropdown.setVisibility(View.GONE);
-                break;
-
-            case "income":
-//                binding.edDateLayout.setVisibility(View.GONE);
-//                binding.imgDatePicker.setVisibility(View.GONE);
                 break;
 
         }
@@ -131,6 +129,15 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
             databaseHelper.budgetDAO().addBudget(new BudgetModel(binding.edName.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
 
             List<BudgetModel> models = databaseHelper.budgetDAO().getAllBudgets();
+            for (int i = 0; i < models.size(); i++) {
+                Log.d(TAG, "saveData: " + models.get(i));
+            }
+            startActivity(new Intent(ActivityAdd.this, BudgetActivity.class));
+        } else if (cont.equals("goals")) {
+            GoalsDBHelper databaseHelper = GoalsDBHelper.getExpense(getApplicationContext());
+            databaseHelper.expenseDAO().addGoals(new GoalsModel(binding.edName.getText().toString(), Integer.valueOf(binding.edAmount.getText().toString())));
+
+            List<GoalsModel> models = databaseHelper.expenseDAO().getAllGoals();
             for (int i = 0; i < models.size(); i++) {
                 Log.d(TAG, "saveData: " + models.get(i));
             }

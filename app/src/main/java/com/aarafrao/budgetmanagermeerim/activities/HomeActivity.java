@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         binding.cardIncome.setOnClickListener(this);
         binding.cardExp.setOnClickListener(this);
         binding.cardBud.setOnClickListener(this);
+        binding.cardGoal.setOnClickListener(this);
         binding.cardArticles.setOnClickListener(this);
     }
 
@@ -40,12 +41,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(HomeActivity.this, ArticleListActivity.class));
         else if (view.getId() == R.id.card_bud)
             startActivity(new Intent(HomeActivity.this, BudgetActivity.class));
-//        else if (view.getId() == R.id.card_exp)
-//            startActivity(new Intent(HomeActivity.this, ExpenseActivity.class));
-//        else if (view.getId() == R.id.card_exp)
-//            startActivity(new Intent(HomeActivity.this, ExpenseActivity.class));
-//        else if (view.getId() == R.id.card_exp)
-//            startActivity(new Intent(HomeActivity.this, ExpenseActivity.class));
+        else if (view.getId() == R.id.card_goal)
+            startActivity(new Intent(HomeActivity.this, GoalsActivity.class));
+
 
     }
 }
