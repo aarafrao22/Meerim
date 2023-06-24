@@ -13,31 +13,31 @@
         android:theme="@style/Theme.BudgetManagerMeerim"
         tools:targetApi="31">
         <activity
-            android:name=".BudgetActivity"
+            android:name=".activities.BudgetActivity"
             android:exported="false" />
         <activity
-            android:name=".ArticleListActivity"
+            android:name=".activities.ArticleListActivity"
             android:exported="false" />
         <activity
-            android:name=".ActivityAdd"
+            android:name=".activities.ActivityAdd"
             android:exported="false" />
         <activity
-            android:name=".IncomeActivity"
+            android:name=".activities.IncomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ExpenseActivity"
+            android:name=".activities.ExpenseActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".activities.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

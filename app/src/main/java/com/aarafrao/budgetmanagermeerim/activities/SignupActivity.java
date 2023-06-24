@@ -1,4 +1,4 @@
-package com.aarafrao.budgetmanagermeerim;
+package com.aarafrao.budgetmanagermeerim.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aarafrao.budgetmanagermeerim.R;
 import com.aarafrao.budgetmanagermeerim.models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -1,4 +1,4 @@
-package com.aarafrao.budgetmanagermeerim;
+package com.aarafrao.budgetmanagermeerim.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.aarafrao.budgetmanagermeerim.R;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -17,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> startActivity(
                 new Intent(SplashActivity.this,
-                LoginActivity.class)
+                        LoginActivity.class)
         ), 2000);
 
     }

@@ -1,4 +1,4 @@
-package com.aarafrao.budgetmanagermeerim;
+package com.aarafrao.budgetmanagermeerim.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aarafrao.budgetmanagermeerim.R;
 import com.aarafrao.budgetmanagermeerim.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.aarafrao.budgetmanagermeerim;
+package com.aarafrao.budgetmanagermeerim.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
