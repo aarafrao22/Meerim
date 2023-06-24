@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -25,10 +24,6 @@ import com.aarafrao.budgetmanagermeerim.databinding.ActivityAddBinding;
 import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
 import com.aarafrao.budgetmanagermeerim.models.ExpenseModel;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.checkbox.MaterialCheckBox;
-import com.google.android.material.slider.Slider;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
@@ -39,15 +34,10 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
     private ActivityAddBinding binding;
     private ArrayList<String> paths;
     private int selectedIndex = 0;
-    private BottomSheetBehavior bottomSheetBehavior;
-    private MaterialCheckBox checkDIgits, checkAlpha, checkSymbol;
     private DatabaseReference mDatabase;
-    private TextView txtMain;
-    private String generatedPassword = "";
-    private Slider seekbar;
-    private MaterialButton btnUsePassword;
-    private String ALLOWED_CHARACTERS = "{}[]%^;':,.?/0123456789qwertyuiopasdfghjklzxcvbnm";
     String cont = "";
+    private int totalSpentAmount = 0;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -58,6 +48,7 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
         setContentView(binding.getRoot());
         paths = new ArrayList<>();
         cont = getIntent().getStringExtra("ctx");
+
 
         switch (cont) {
             case "budget":
@@ -74,6 +65,9 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
 
         }
 
+
+        Log.d(TAG, "totalSpentAmount: " + totalSpentAmount);
+
         BudgetDBHelper databaseHelper = BudgetDBHelper.getBudget(getApplicationContext());
 
         List<BudgetModel> models = databaseHelper.budgetDAO().getAllBudgets();
@@ -84,7 +78,11 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
 
         paths.add("Default");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(ActivityAdd.this, android.R.layout.simple_spinner_item, paths);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                ActivityAdd.this,
+                android.R.layout.simple_spinner_item,
+                paths
+        );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerDropdown.setAdapter(adapter);
         binding.spinnerDropdown.setOnItemSelectedListener(this);

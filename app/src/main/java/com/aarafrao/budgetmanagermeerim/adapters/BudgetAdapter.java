@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarafrao.budgetmanagermeerim.R;
 import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
-import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 
 import java.util.List;
 
