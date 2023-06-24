@@ -32,7 +32,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private TextView tvAlreadyHave;
     private TextInputEditText edEmail, edPassword, edName;
     private Button btnSignUp;
-
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth firebaseAuth;
@@ -119,28 +118,25 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             String pass = edPassword.getText().toString();
 
             firebaseAuth.createUserWithEmailAndPassword(mail, pass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                FirebaseUser user = firebaseAuth.getCurrentUser();
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+//                            FirebaseUser user = firebaseAuth.getCurrentUser();
 //                                updateUI(user);
-                                rootNode = FirebaseDatabase.getInstance();
-                                reference = rootNode.getReference("users");
-                                UserModel userModel = new UserModel(edName.getText().toString(), edPassword.getText().toString(), edEmail.getText().toString());
-                                Random rand = new Random();
+                            rootNode = FirebaseDatabase.getInstance();
+                            reference = rootNode.getReference("users");
+                            UserModel userModel = new UserModel(edName.getText().toString(), edPassword.getText().toString(), edEmail.getText().toString());
+                            Random rand = new Random();
 
-                                int n = rand.nextInt(5000);
-                                n += 1;
-                                reference.child(String.valueOf(n) + " " + edName.getText().toString()).setValue(userModel);
-                                Toast.makeText(SignupActivity.this, "DataAdded", Toast.LENGTH_SHORT).show();
-                                sendToMainActivity(edName.getText().toString());
+                            int n = rand.nextInt(5000);
+                            n += 1;
+                            reference.child(String.valueOf(n) + " " + edName.getText().toString()).setValue(userModel);
+                            Toast.makeText(SignupActivity.this, "DataAdded", Toast.LENGTH_SHORT).show();
+                            sendToMainActivity(edName.getText().toString());
 
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(SignupActivity.this, "", Toast.LENGTH_SHORT).show();
-                            }
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SignupActivity.this, "", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -186,7 +182,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         edName = findViewById(R.id.sign_up_f_name);
         btnSignUp = findViewById(R.id.btn_sign_up);
 
-//        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 //        firebaseFirestore = FirebaseFirestore.getInstance();
     }
 

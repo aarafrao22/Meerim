@@ -17,6 +17,7 @@ import com.aarafrao.budgetmanagermeerim.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtDontHave;
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edPassword = findViewById(R.id.sign_in_password);
         btnSignIn = findViewById(R.id.btn_sign_in);
         forgotPassword = findViewById(R.id.sign_in_forgot);
-//        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
