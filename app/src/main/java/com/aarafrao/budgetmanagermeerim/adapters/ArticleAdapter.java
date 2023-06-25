@@ -41,7 +41,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.dateTextView.setText(incomeModel.getDate());
 
         holder.itemView.setOnClickListener(v->{
-            holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), ArticleActivity.class).putExtra("ctx",position));
+            holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), ArticleActivity.class).putExtra("ctx",String.valueOf(position)));
 
         });
     }

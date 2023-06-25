@@ -11,23 +11,25 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        app:cardBackgroundColor="#f0f0f0"
+        android:layout_height="300dp"
         app:cardCornerRadius="14dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="164dp"
+            android:layout_height="164dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Budget\nManager"
+            android:src="@drawable/img_1"
             android:textColor="@color/green_dark"
             android:textSize="28dp"
             android:textStyle="bold" />
+
+
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -66,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="97dp"
             android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#FF5252"
+            app:cardBackgroundColor="@color/theme_green"
             app:cardCornerRadius="14dp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

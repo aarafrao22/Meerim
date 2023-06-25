@@ -95,8 +95,6 @@ public class ReportsActivity extends AppCompatActivity {
         mBarChartExpense = findViewById(R.id.barchart_monthb);
         txtSumMonthly = findViewById(R.id.txtSumMonthly);
         txtSumMonthlyb = findViewById(R.id.txtSumMonthlyb);
-//        txtSumMonthly.setText(sum.toString());
-//        mBarChart.setVisibility(View.INVISIBLE);
         mBarChart.setScaleEnabled(false);
         keyArrayList = new ArrayList<>();
         keyArrayListExp = new ArrayList<>();

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_margin="16sp"
         android:src="@drawable/money_dollar_circle_line"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_marginStart="16sp"
         android:text="Income"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -66,7 +66,6 @@
                 app:layout_constraintStart_toStartOf="@+id/textView37"
                 app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
-
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart_month"
                 android:layout_width="match_parent"
@@ -91,8 +90,8 @@
 
     <ImageView
         android:id="@+id/imageView2b"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_margin="16sp"
         android:src="@drawable/money_dollar_circle_line"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +104,7 @@
         android:layout_marginStart="16sp"
         android:text="Expense"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView2b"
         app:layout_constraintTop_toTopOf="@+id/imageView2b" />
