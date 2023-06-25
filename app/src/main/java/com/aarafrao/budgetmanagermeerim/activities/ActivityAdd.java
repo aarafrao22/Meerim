@@ -141,7 +141,7 @@ public class ActivityAdd extends AppCompatActivity implements AdapterView.OnItem
             for (int i = 0; i < models.size(); i++) {
                 Log.d(TAG, "saveData: " + models.get(i));
             }
-            startActivity(new Intent(ActivityAdd.this, BudgetActivity.class));
+            startActivity(new Intent(ActivityAdd.this, GoalsActivity.class));
         }
         finish();
 

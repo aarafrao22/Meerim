@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarafrao.budgetmanagermeerim.R;
-import com.aarafrao.budgetmanagermeerim.models.BudgetModel;
 import com.aarafrao.budgetmanagermeerim.models.GoalsModel;
 
 import java.util.List;
@@ -19,10 +18,12 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
 
     private List<GoalsModel> incomeList;
     private Context context;
+    private int i;
 
-    public GoalsAdapter(List<GoalsModel> incomeList, Context context) {
+    public GoalsAdapter(List<GoalsModel> incomeList, Context context, int i) {
         this.incomeList = incomeList;
         this.context = context;
+        this.i = i;
     }
 
     @NonNull
@@ -36,8 +37,15 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         GoalsModel incomeModel = incomeList.get(position);
         holder.descriptionTextView.setText(incomeModel.getName());
-        holder.amountTextView.setText(String.valueOf(incomeModel.getAmount()).concat("%"));
-        holder.dateTextView.setText(incomeModel.getAmount());
+
+
+        if (i > incomeModel.getAmount())
+            holder.amountTextView.setText(("100%"));
+        else {
+            holder.amountTextView.setText(String.valueOf(incomeModel.getAmount()/i).concat("%"));
+        }
+
+        holder.dateTextView.setText(String.valueOf(incomeModel.getAmount()));
     }
 
     @Override

@@ -59,7 +59,7 @@ public class GoalsActivity extends AppCompatActivity {
             Log.d("TAG", "budgetList: " + models.get(i));
         }
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new GoalsAdapter(models, this);
+        adapter = new GoalsAdapter(models, this,incomeD-expensesD);
         binding.recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
