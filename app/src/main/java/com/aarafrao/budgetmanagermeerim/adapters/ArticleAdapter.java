@@ -1,5 +1,7 @@
 package com.aarafrao.budgetmanagermeerim.adapters;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarafrao.budgetmanagermeerim.R;
+import com.aarafrao.budgetmanagermeerim.activities.ArticleActivity;
 import com.aarafrao.budgetmanagermeerim.models.IncomeModel;
 
 import java.util.List;
@@ -36,6 +39,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.descriptionTextView.setText(incomeModel.getDescription());
 //        holder.amountTextView.setText(String.valueOf(incomeModel.getAmount()));
         holder.dateTextView.setText(incomeModel.getDate());
+
+        holder.itemView.setOnClickListener(v->{
+            holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), ArticleActivity.class).putExtra("ctx",position));
+
+        });
     }
 
     @Override
