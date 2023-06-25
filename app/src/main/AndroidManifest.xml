@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BudgetManagerMeerim"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ReportsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.GoalsActivity"
             android:exported="false" />
         <activity
@@ -34,13 +37,13 @@
             android:name=".activities.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

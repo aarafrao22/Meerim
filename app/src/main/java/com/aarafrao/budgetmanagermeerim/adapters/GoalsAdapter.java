@@ -45,7 +45,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
             holder.amountTextView.setText(String.valueOf(incomeModel.getAmount()/i).concat("%"));
         }
 
-        holder.dateTextView.setText(String.valueOf(incomeModel.getAmount()));
+        holder.dateTextView.setText("$"+String.valueOf(incomeModel.getAmount()));
     }
 
     @Override
